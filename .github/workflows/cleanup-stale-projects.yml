@@ -1,10 +1,9 @@
 on:
   schedule:
   - cron: 0 18 * * 0
-name: Project Cleanup
+name: Cleanup stale projects
 jobs:
   cleanupArchivedProjects:
-    name: Cleanup archived projects
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -12,3 +11,4 @@ jobs:
       uses: ./.github/actions/cleanup-archived-projects
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        APPLY_CHANGES: 1
