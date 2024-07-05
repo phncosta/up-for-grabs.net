@@ -11,8 +11,9 @@ tags:
 - cloud
 - sdk
 upforgrabs:
-  name: Up for grabs
-  link: https://github.com/Azure/azure-sdk-for-js/labels/Up%20for%20grabs
+  name: help wanted
+  link: https://github.com/Azure/azure-sdk-for-js/labels/help%20wanted
 stats:
-  issue-count: 0
-  last-updated: '2019-11-08T03:15:21Z'
+  issue-count: 1
+  last-updated: '2023-09-25T22:08:55Z'
+  fork-count: 1147

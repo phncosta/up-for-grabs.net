@@ -16,8 +16,8 @@ tags:
 - rts
 - a-star
 upforgrabs:
-  name: Easy
-  link: https://github.com/OpenRA/OpenRA/labels/Easy
+  name: 'PR: Help wanted'
+  link: https://github.com/OpenRA/OpenRA/labels/PR%3A%20Help%20wanted
 stats:
-  issue-count: 29
-  last-updated: '2019-11-08T09:43:20Z'
+  issue-count: 0
+  fork-count: 2633

@@ -4,45 +4,43 @@ on:
   pull_request:
   push:
     branches:
-    - gh-pages
+      - gh-pages
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Build Docker container
-      run: docker build .
+      - uses: actions/checkout@main
+      - name: Build Docker container
+        run: docker build .
+
   javascript:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 12
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - name: npm install, lint, and test
-      run: |
-        npm install
-        npm run lint
-        npm run prettier
-        npm test
-      env:
-        CI: true
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: npm install, lint, and test
+        run: |
+          npm ci
+          npm run lint
+          npm run prettier
+          npm test
+        env:
+          CI: true
 
   site:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Set up Ruby 2.6
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.6.x
-    - name: Build and test Jekyll site
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        bundle exec rubocop
-        bundle exec jekyll build
-        bundle exec ruby scripts/validate_data_files.rb
-
+      - uses: actions/checkout@v4
+      - name: Set up Ruby 3.2
+        uses: ruby/setup-ruby@3783f195e29b74ae398d7caca108814bbafde90e
+        with:
+          ruby-version: '3.2'
+      - name: Build and test Jekyll site
+        run: |
+          bundle install
+          bundle exec rubocop
+          bundle exec jekyll build
+          bundle exec ruby scripts/validate_data_files.rb

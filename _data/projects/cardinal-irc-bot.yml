@@ -8,8 +8,9 @@ tags:
 - irc
 - irc-bot
 upforgrabs:
-  name: help wanted
-  link: https://github.com/JohnMaguire/Cardinal/labels/help%20wanted
+  name: good first issue
+  link: https://github.com/johnmaguire/Cardinal/labels/good%20first%20issue
 stats:
-  issue-count: 4
-  last-updated: '2019-09-01T22:14:12Z'
+  issue-count: 2
+  last-updated: '2022-06-07T06:02:09Z'
+  fork-count: 38

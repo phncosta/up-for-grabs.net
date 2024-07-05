@@ -10,7 +10,8 @@ tags:
 - node.js
 upforgrabs:
   name: up-for-grabs
-  link: https://github.com/gilbitron/Raneto/labels/up-for-grabs
+  link: https://github.com/ryanlelek/Raneto/labels/up-for-grabs
 stats:
-  issue-count: 12
-  last-updated: '2019-11-05T15:59:08Z'
+  issue-count: 7
+  last-updated: '2023-06-20T06:37:32Z'
+  fork-count: 442

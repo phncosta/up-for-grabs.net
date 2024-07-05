@@ -12,5 +12,6 @@ upforgrabs:
   name: Up for grabs
   link: https://github.com/chocolatey/ChocolateyGUI/labels/Up%20for%20grabs
 stats:
-  issue-count: 12
-  last-updated: '2019-11-08T06:02:48Z'
+  issue-count: 10
+  last-updated: '2023-01-23T07:17:53Z'
+  fork-count: 244

@@ -9,9 +9,11 @@ tags:
 - c#
 - ui
 - theme
+- ".net"
 upforgrabs:
   name: up-for-grabs
   link: https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/labels/up-for-grabs
 stats:
-  issue-count: 23
-  last-updated: '2019-11-08T07:44:05Z'
+  issue-count: 46
+  last-updated: '2024-06-20T05:23:25Z'
+  fork-count: 3399

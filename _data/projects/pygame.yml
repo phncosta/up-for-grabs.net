@@ -13,5 +13,6 @@ upforgrabs:
   name: good first issue
   link: https://github.com/pygame/pygame/labels/good%20first%20issue
 stats:
-  issue-count: 7
-  last-updated: '2019-11-08T13:11:34Z'
+  issue-count: 5
+  last-updated: '2024-06-03T17:49:43Z'
+  fork-count: 3186

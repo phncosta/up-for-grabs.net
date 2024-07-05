@@ -16,5 +16,6 @@ upforgrabs:
   name: help wanted
   link: https://github.com/boxbilling/boxbilling/labels/help%20wanted
 stats:
-  issue-count: 24
-  last-updated: '2019-11-07T06:29:24Z'
+  issue-count: 13
+  last-updated: '2022-12-01T15:13:00Z'
+  fork-count: 374

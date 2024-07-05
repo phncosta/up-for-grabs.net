@@ -7,8 +7,9 @@ tags:
 - web-components
 - web
 upforgrabs:
-  name: hacktoberfest
-  link: https://github.com/open-wc/open-wc/labels/hacktoberfest
+  name: help wanted
+  link: https://github.com/open-wc/open-wc/labels/help%20wanted
 stats:
-  issue-count: 14
-  last-updated: '2019-11-08T00:52:23Z'
+  issue-count: 15
+  last-updated: '2023-05-16T05:01:33Z'
+  fork-count: 419

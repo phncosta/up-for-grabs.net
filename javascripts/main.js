@@ -1,6 +1,5 @@
 // @ts-nocheck
 
-/* eslint arrow-parens: [ "error", "as-needed" ] */
 /* eslint no-var: [ "error" ] */
 
 define([
@@ -10,14 +9,26 @@ define([
   'fetchIssueCount',
   'underscore',
   'sammy',
+  // this will auto-run and apply the event listeners for dark mode checks
+  'dark-mode',
   // chosen is listed here as a dependency because it's used from a jQuery
   // selector, and needs to be ready before this code runs
   'chosen',
-], ($, loadProjects, ProjectsService, fetchIssueCount, _, sammy) => {
+], (
+  $,
+  loadProjects,
+  ProjectsService,
+  fetchIssueCount,
+  _,
+  sammy,
+  setupDarkModeListener
+) => {
   let compiledtemplateFn = null,
     projectsPanel = null;
 
-  const getFilterUrl = function() {
+  setupDarkModeListener();
+
+  const getFilterUrl = function () {
     return location.href.indexOf('/#/filters') > -1
       ? location.href
       : `${location.href}filters`;
@@ -53,12 +64,12 @@ define([
     return `about ${Math.round(elapsed / msPerYear)} years ago`;
   }
 
-  const renderProjects = function(projectService, tags, names, labels) {
+  const renderProjects = function (projectService, tags, names, labels, date) {
     const allTags = projectService.getTags();
 
     projectsPanel.html(
       compiledtemplateFn({
-        projects: projectService.get(tags, names, labels),
+        projects: projectService.get(tags, names, labels, date),
         relativeTime,
         tags: allTags,
         popularTags: projectService.getPopularTags(6),
@@ -69,7 +80,10 @@ define([
         selectedLabels: labels,
       })
     );
-
+    date = date || 'invalid';
+    projectsPanel
+      .find(`button.radio-btn[id=${date}]`)
+      .addClass('radio-btn-selected');
     projectsPanel
       .find('select.tags-filter')
       .chosen({
@@ -78,7 +92,7 @@ define([
       })
       .val(tags)
       .trigger('chosen:updated')
-      .change(function() {
+      .change(function () {
         location.href = updateQueryStringParameter(
           getFilterUrl(),
           'tags',
@@ -95,13 +109,33 @@ define([
       })
       .val(names)
       .trigger('chosen:updated')
-      .change(function() {
+      .change(function () {
         location.href = updateQueryStringParameter(
           getFilterUrl(),
           'names',
           encodeURIComponent($(this).val() || '')
         );
       });
+    // Logic for checking/unchecking date-buttons
+    projectsPanel.find('button.radio-btn').each(function () {
+      $(this).click(function () {
+        let { id } = this;
+        const currentSelected = projectsPanel.find(
+          'button.radio-btn-selected'
+        )[0];
+
+        // Uncheck
+        if (currentSelected && currentSelected.id == id) {
+          id = '';
+        }
+
+        location.href = updateQueryStringParameter(
+          getFilterUrl(),
+          'date',
+          encodeURIComponent(id || '')
+        );
+      });
+    });
 
     projectsPanel
       .find('select.labels-filter')
@@ -111,7 +145,7 @@ define([
       })
       .val(labels)
       .trigger('chosen:updated')
-      .change(function() {
+      .change(function () {
         location.href = updateQueryStringParameter(
           getFilterUrl(),
           'labels',
@@ -119,28 +153,25 @@ define([
         );
       });
 
-    projectsPanel
-      .find('ul.popular-tags')
-      .children()
-      .each((i, elem) => {
-        $(elem).on('click', function() {
-          selTags = $('.tags-filter').val() || [];
-          selectedTag = preparePopTagName($(this).text() || '');
-          if (selectedTag) {
-            tagID = allTags
-              .map(tag => tag.name.toLowerCase())
-              .indexOf(selectedTag);
-            if (tagID !== -1) {
-              selTags.push(selectedTag);
-              location.href = updateQueryStringParameter(
-                getFilterUrl(),
-                'tags',
-                encodeURIComponent(selTags)
-              );
-            }
+    projectsPanel.find('ul.popular-tags li a').each((i, elem) => {
+      $(elem).on('click', function () {
+        selTags = $('.tags-filter').val() || [];
+        selectedTag = preparePopTagName($(this).text() || '');
+        if (selectedTag) {
+          tagID = allTags
+            .map((tag) => tag.name.toLowerCase())
+            .indexOf(selectedTag);
+          if (tagID !== -1) {
+            selTags.push(selectedTag);
+            location.href = updateQueryStringParameter(
+              getFilterUrl(),
+              'tags',
+              encodeURIComponent(selTags)
+            );
           }
-        });
+        }
       });
+    });
   };
 
   /*
@@ -148,7 +179,7 @@ define([
     it fit URL specification
     @return string - The value of the Name
   */
-  let preparePopTagName = function(name) {
+  let preparePopTagName = function (name) {
     if (name === '') return '';
     return name.toLowerCase().split(' ')[0];
   };
@@ -157,7 +188,7 @@ define([
    * This is a utility method to help update URL Query Parameters
    * @return string - The value of the URL when adding/removing values to it.
    */
-  let updateQueryStringParameter = function(uri, key, value) {
+  let updateQueryStringParameter = function (uri, key, value) {
     const re = new RegExp(`([?&])${key}=.*?(&|$)`, 'i');
     const separator = uri.indexOf('?') !== -1 ? '&' : '?';
     if (uri.match(re)) {
@@ -174,7 +205,7 @@ define([
    *
    * @return string - value of url params
    */
-  const getParameterByName = function(name, url) {
+  const getParameterByName = function (name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
     const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
@@ -198,7 +229,7 @@ define([
     }
   });
   $(document).ready(() => {
-    $('#back2Top').click(event => {
+    $('#back2Top').click((event) => {
       event.preventDefault();
       $('html, body').animate({ scrollTop: 0 }, 'slow');
       return false;
@@ -211,11 +242,11 @@ define([
    * @params String text - The text given, indices or names. As long as it is a string
    * @return Array - Returns an array of splitted values if given a text. Otherwise undefined
    */
-  const prepareForHTML = function(text) {
+  const prepareForHTML = function (text) {
     return text ? text.toLowerCase().split(',') : text;
   };
 
-  const issueCount = function(project) {
+  const issueCount = function (project) {
     const a = $(project).find('.label a');
     const gh = a
       .attr('href')
@@ -241,10 +272,10 @@ define([
     const labelEncoded = gh[2];
 
     fetchIssueCount(ownerAndName, labelEncoded).then(
-      resultCount => {
+      (resultCount) => {
         count.html(resultCount);
       },
-      error => {
+      (error) => {
         const message = error.message ? error.message : error;
         count.html('?!');
         count.attr('title', message);
@@ -266,7 +297,7 @@ define([
       };
 
     $window.on('scroll chosen:updated', () => {
-      $('.projects tbody:not(.counted)').each(function() {
+      $('.projects tbody:not(.counted)').each(function () {
         const project = $(this);
         if (onScreen(project)) {
           issueCount(project);
@@ -278,23 +309,23 @@ define([
     compiledtemplateFn = _.template($('#projects-panel-template').html());
     projectsPanel = $('#projects-panel');
 
-    projectsPanel.on('click', 'a.remove-tag', function(e) {
+    projectsPanel.on('click', 'a.remove-tag', function (e) {
       e.preventDefault();
       const tags = [];
       projectsPanel
         .find('a.remove-tag')
         .not(this)
-        .each(function() {
+        .each(function () {
           tags.push($(this).data('tag'));
         });
       const tagsString = tags.join(',');
       window.location.href = `#/tags/${tagsString}`;
     });
 
-    loadProjects().then(p => {
+    loadProjects().then((p) => {
       const projectsSvc = new ProjectsService(p);
 
-      const app = sammy(function() {
+      const app = sammy(function () {
         /*
          * This is the route used to filter by tags/names/labels
          * It ensures to read values from the URI query param and perform actions
@@ -304,7 +335,8 @@ define([
           const labels = prepareForHTML(getParameterByName('labels'));
           const names = prepareForHTML(getParameterByName('names'));
           const tags = prepareForHTML(getParameterByName('tags'));
-          renderProjects(projectsSvc, tags, names, labels);
+          const date = getParameterByName('date');
+          renderProjects(projectsSvc, tags, names, labels, date);
         });
 
         this.get('/', () => {

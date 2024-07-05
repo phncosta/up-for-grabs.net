@@ -9,7 +9,8 @@ tags:
 - community
 upforgrabs:
   name: Good first issue
-  link: https://github.com/flarum/core/labels/Good%20first%20issue
+  link: https://github.com/flarum/framework/labels/Good%20first%20issue
 stats:
-  issue-count: 29
-  last-updated: '2019-11-08T13:48:29Z'
+  issue-count: 1
+  last-updated: '2023-04-16T14:10:49Z'
+  fork-count: 830

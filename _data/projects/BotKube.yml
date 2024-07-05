@@ -15,7 +15,8 @@ tags:
 - mattermost-bot
 upforgrabs:
   name: help wanted
-  link: https://github.com/infracloudio/botkube/labels/help%20wanted
+  link: https://github.com/kubeshop/botkube/labels/help%20wanted
 stats:
-  issue-count: 9
-  last-updated: '2019-11-07T13:34:54Z'
+  issue-count: 3
+  last-updated: '2021-10-26T06:30:54Z'
+  fork-count: 293

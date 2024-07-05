@@ -12,8 +12,9 @@ tags:
 - open-government
 - manage-topics
 upforgrabs:
-  name: Good first issue
-  link: https://github.com/consul/consul/labels/Good%20first%20issue
+  name: help wanted
+  link: https://github.com/consuldemocracy/consuldemocracy/labels/help%20wanted
 stats:
-  issue-count: 37
-  last-updated: '2019-11-08T11:36:42Z'
+  issue-count: 28
+  last-updated: '2024-05-16T22:23:15Z'
+  fork-count: 1101

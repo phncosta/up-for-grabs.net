@@ -10,5 +10,6 @@ upforgrabs:
   name: help wanted
   link: https://github.com/OpenLiveWriter/OpenLiveWriter/labels/help%20wanted
 stats:
-  issue-count: 46
-  last-updated: '2019-11-07T09:58:41Z'
+  issue-count: 44
+  last-updated: '2022-10-04T13:58:03Z'
+  fork-count: 491

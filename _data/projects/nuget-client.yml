@@ -9,8 +9,9 @@ tags:
 - visualstudio
 - package
 upforgrabs:
-  name: Up for Grabs
-  link: https://github.com/NuGet/Home/labels/Up%20for%20Grabs
+  name: help wanted
+  link: https://github.com/NuGet/Home/labels/help%20wanted
 stats:
-  issue-count: 49
-  last-updated: '2019-11-06T14:57:55Z'
+  issue-count: 90
+  last-updated: '2024-06-25T21:44:57Z'
+  fork-count: 249

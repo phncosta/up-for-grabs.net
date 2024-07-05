@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const fetchIssueCount = require('../../javascripts/fetchIssueCount');
 
 const defaultEtag = 'a00049ba79152d03380c34652f2cb612';
@@ -255,8 +259,8 @@ describe('fetchIssueCount', () => {
 
       stubRateLimitError(anHourFromNowInSeconds);
 
-      return new Promise(done => {
-        const makeRequestAndIgnoreError = function() {
+      return new Promise((done) => {
+        const makeRequestAndIgnoreError = function () {
           return fetchIssueCount('owner/repo', 'label').then(
             () => {},
             () => {}
@@ -285,8 +289,8 @@ describe('fetchIssueCount', () => {
 
       stubRateLimitError(twoHoursAgoInSeconds);
 
-      return new Promise(done => {
-        const makeRequestAndIgnoreError = function() {
+      return new Promise((done) => {
+        const makeRequestAndIgnoreError = function () {
           return fetchIssueCount('owner/repo', 'label').then(
             () => {},
             () => {}

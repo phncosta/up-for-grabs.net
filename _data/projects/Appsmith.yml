@@ -1,0 +1,18 @@
+---
+name: Appsmith
+desc: Build custom CRUD apps that talk to any API or database. All without HTML or CSS.
+site: https://appsmith.com/
+tags:
+- low-code
+- internal-tools
+- crud-apps
+- admin-panels
+- app-builder
+- admin-dashboard
+upforgrabs:
+  name: Good First Issue
+  link: https://github.com/appsmithorg/appsmith/labels/Good%20First%20Issue
+stats:
+  issue-count: 6
+  last-updated: '2024-06-24T15:56:06Z'
+  fork-count: 3491

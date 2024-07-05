@@ -1,0 +1,22 @@
+---
+name: FreshRSS
+desc: >-
+  FreshRSS is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful,
+  and customizable.
+site: https://freshrss.org/
+tags:
+- rss
+- php
+- rss-reader
+- websub
+- news-aggregator
+- self-hosted
+- feed
+- rss-aggregator
+upforgrabs:
+  name: good first issue
+  link: https://github.com/FreshRSS/FreshRSS/labels/good%20first%20issue
+stats:
+  issue-count: 50
+  last-updated: '2024-06-27T07:03:26Z'
+  fork-count: 785

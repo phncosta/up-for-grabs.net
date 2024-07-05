@@ -9,8 +9,9 @@ tags:
 - php
 - web
 upforgrabs:
-  name: Hacktoberfest
-  link: https://github.com/matomo-org/matomo/labels/hacktoberfest
+  name: Help wanted
+  link: https://github.com/matomo-org/matomo/labels/Help%20wanted
 stats:
-  issue-count: 85
-  last-updated: '2019-11-08T09:00:44Z'
+  issue-count: 103
+  last-updated: '2024-06-21T17:00:33Z'
+  fork-count: 2589

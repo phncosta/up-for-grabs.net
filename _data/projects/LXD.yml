@@ -1,0 +1,15 @@
+---
+name: LXD
+desc: System container and virtual machine manager
+site: https://linuxcontainers.org/lxd
+tags:
+- containers
+- vms
+- go
+upforgrabs:
+  name: Easy
+  link: https://github.com/canonical/lxd/labels/Easy
+stats:
+  issue-count: 10
+  last-updated: '2024-04-15T07:20:33Z'
+  fork-count: 908

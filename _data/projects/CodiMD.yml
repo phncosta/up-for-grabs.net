@@ -14,7 +14,8 @@ tags:
 - javascript
 upforgrabs:
   name: good first issue
-  link: https://github.com/codimd/server/labels/good%20first%20issue
+  link: https://github.com/hedgedoc/hedgedoc/labels/good%20first%20issue
 stats:
-  issue-count: 1
-  last-updated: '2019-11-07T06:23:05Z'
+  issue-count: 4
+  last-updated: '2024-03-31T12:45:19Z'
+  fork-count: 381
